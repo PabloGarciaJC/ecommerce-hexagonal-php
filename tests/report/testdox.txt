@@ -1,0 +1,19 @@
+Database
+ [x] Se inyecta Mysqli en el objeto manualmente
+ [x] Debe simular Conexión BD
+
+Language Controller
+ [x] Obtener idioma Inglés
+ [x] Obtener idioma Español
+ [x] Obtener idioma Francés
+
+Linea Pedidos Controller
+ [x] Prueba Exitosa para checkout guardar
+
+Producto Controller
+ [x] Ficha PRoducto
+
+Usuario Controller
+ [x] Registra un nuevo usuario exitosamente
+ [x] Inicia sesión correctamente con credenciales válidas
+
