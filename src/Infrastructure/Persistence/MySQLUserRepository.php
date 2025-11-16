@@ -60,4 +60,23 @@ class MySQLUserRepository implements UserRepositoryInterface
         if (!$r) return null;
         return new User($r['name'], $r['email'], (int)$r['id'], new \DateTimeImmutable($r['created_at']), $r['password'] ?? null);
     }
+
+    public function update(User $user): void
+    {
+        $stmt = $this->connection->prepare(
+            'UPDATE users SET name = :name, email = :email, password = :password WHERE id = :id'
+        );
+        $stmt->execute([
+            ':name' => $user->getName(),
+            ':email' => $user->getEmail(),
+            ':password' => $user->getPasswordHash(),
+            ':id' => $user->getId(),
+        ]);
+    }
+
+    public function deleteById(int $id): void
+    {
+        $stmt = $this->connection->prepare('DELETE FROM users WHERE id = :id');
+        $stmt->execute([':id' => $id]);
+    }
 }

@@ -10,4 +10,6 @@ interface UserRepositoryInterface
     public function findAll(): array; // devuelve array<User>
     public function findById(int $id): ?User;
     public function findByEmail(string $email): ?User;
+    public function update(User $user): void;
+    public function deleteById(int $id): void;
 }

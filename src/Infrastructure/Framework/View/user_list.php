@@ -24,6 +24,7 @@
                         <th class="users__th">Nombre</th>
                         <th class="users__th">Email</th>
                         <th class="users__th">Creado</th>
+                        <th class="users__th">Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="users__tbody">
@@ -33,6 +34,14 @@
                         <td class="users__cell"><?= htmlspecialchars($u->getName()) ?></td>
                         <td class="users__cell"><?= htmlspecialchars($u->getEmail()) ?></td>
                         <td class="users__cell"><?= htmlspecialchars($u->getCreatedAt()->format('Y-m-d H:i')) ?></td>
+                        <td class="users__cell">
+                            <a class="users__link" href="/?user=edit&id=<?= $u->getId() ?>">Editar</a>
+
+                            <form style="display:inline" method="POST" action="/?user=delete">
+                                <input type="hidden" name="id" value="<?= $u->getId() ?>">
+                                <button class="users__button" type="submit" onclick="return confirm('¿Eliminar usuario?')">Eliminar</button>
+                            </form>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
