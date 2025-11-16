@@ -6,6 +6,7 @@ use Application\UseCase\CreateUser;
 use Application\UseCase\ListUsers;
 use Application\UseCase\UpdateUser;
 use Application\UseCase\DeleteUser;
+use Infrastructure\Framework\Helper\FlashMessage;
 
 class UserController
 {
@@ -30,11 +31,50 @@ class UserController
 
     public function store(array $request): void
     {
-        $name = $request['name'] ?? '';
-        $email = $request['email'] ?? '';
+        $name = trim($request['name'] ?? '');
+        $email = trim($request['email'] ?? '');
         $password = $request['password'] ?? '';
-        $user = $this->createUser->execute($name, $email, $password);
-        include __DIR__ . '/../View/user_created.php';
+
+        // Validaciones
+        $error = null;
+        if (empty($name)) {
+            $error = 'El nombre es requerido';
+        } elseif (empty($email)) {
+            $error = 'El email es requerido';
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $error = 'El email no es válido';
+        } elseif (empty($password)) {
+            $error = 'La contraseña es requerida';
+        } elseif (strlen($password) < 6) {
+            $error = 'La contraseña debe tener al menos 6 caracteres';
+        }
+
+        if ($error) {
+            FlashMessage::setError($error);
+            header('Location: /?register=form');
+            exit;
+        }
+
+        try {
+            $user = $this->createUser->execute($name, $email, $password);
+            FlashMessage::setSuccess("¡Usuario '{$user->getName()}' creado exitosamente! Inicia sesión.");
+            header('Location: /?login=form');
+            exit;
+        } catch (\PDOException $e) {
+            // Email duplicado o error de BD
+            if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
+                $error = 'Este email ya está registrado';
+            } else {
+                $error = 'Error al crear usuario. Por favor intenta de nuevo.';
+            }
+            FlashMessage::setError($error);
+            header('Location: /?register=form');
+            exit;
+        } catch (\Exception $e) {
+            FlashMessage::setError('Error: ' . $e->getMessage());
+            header('Location: /?register=form');
+            exit;
+        }
     }
 
     public function index(): void

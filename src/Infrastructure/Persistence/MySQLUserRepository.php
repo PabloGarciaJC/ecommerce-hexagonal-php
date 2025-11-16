@@ -27,8 +27,11 @@ class MySQLUserRepository implements UserRepositoryInterface
             ':created_at' => $user->getCreatedAt()->format('Y-m-d H:i:s')
         ]);
 
-        // si quieres, actualizar id en la entidad (opcional)
-        // $id = (int)$this->connection->lastInsertId();
+        // Actualizar id en la entidad
+        $id = (int)$this->connection->lastInsertId();
+        if ($id > 0) {
+            $user->setId($id);
+        }
     }
 
     public function findAll(): array
