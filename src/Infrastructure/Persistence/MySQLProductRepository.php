@@ -58,7 +58,6 @@ class MySQLProductRepository implements ProductRepositoryInterface
             'SELECT id, sku, name, description, price, currency, stock, active, created_at FROM products ORDER BY created_at DESC'
         );
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
         return array_map(fn($row) => $this->hydrateProduct($row), $rows);
     }
 

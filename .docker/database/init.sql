@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: mysql
--- Tiempo de generación: 16-11-2025 a las 20:02:27
+-- Tiempo de generación: 16-11-2025 a las 23:47:33
 -- Versión del servidor: 9.5.0
 -- Versión de PHP: 8.3.26
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `hexagonal_pablogarciajc`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `favorites`
+--
+
+CREATE TABLE `favorites` (
+  `id` int NOT NULL,
+  `product_id` int NOT NULL,
+  `user_id` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `favorites`
+--
+
+INSERT INTO `favorites` (`id`, `product_id`, `user_id`) VALUES
+(1, 1, 1),
+(2, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -83,7 +103,34 @@ INSERT INTO `products` (`id`, `sku`, `name`, `description`, `price`, `currency`,
 (5, 'HEADPHONES-001', 'Audífonos Sony WH-1000XM5', 'Audífonos con cancelación de ruido activa de clase mundial. Batería de 30 horas, sonido de alta calidad y micrófono integrado.', 399.99, 'USD', 10, 1, '2025-11-16 19:51:28'),
 (6, 'WEBCAM-001', 'Webcam Logitech C920 Pro', 'Cámara web Full HD 1080p para videoconferencias y streaming. Micrófono estéreo incorporado, enfoque automático y corrección de luz.', 79.99, 'USD', 15, 1, '2025-11-16 19:51:28'),
 (7, 'DESK-001', 'Escritorio Gaming RGB', 'Escritorio gaming con iluminación RGB integrada, superficie de vidrio templado y cable management. Dimensiones 150cm x 60cm.', 299.99, 'USD', 4, 1, '2025-11-16 19:51:28'),
-(8, 'CHAIR-001', 'Silla Gaming Ergonómica', 'Silla gaming con soporte lumbar ajustable, brazos 3D, inclinación hasta 170 grados. Tapicería en cuero sintético de alta calidad.', 249.99, 'USD', 7, 1, '2025-11-16 19:51:28');
+(8, 'CHAIR-001', 'Silla Gaming Ergonómica', 'Silla gaming con soporte lumbar ajustable, brazos 3D, inclinación hasta 170 grados. Tapicería en cuero sintético de alta calidad.', 249.99, 'USD', 7, 1, '2025-11-16 19:51:28'),
+(9, 'BOOK-001', 'Libro: El poder de los hábitos', 'Descubre cómo los hábitos influyen en tu vida y cómo cambiarlos para alcanzar el éxito personal y profesional.', 19.99, 'USD', 20, 1, '2025-11-17 12:00:00'),
+(10, 'SHOES-001', 'Zapatillas Nike Air Max', 'Zapatillas deportivas Nike Air Max, cómodas y con diseño moderno. Ideales para correr y uso diario.', 129.99, 'USD', 25, 1, '2025-11-17 12:05:00'),
+(11, 'COFFEE-001', 'Cafetera Nespresso Vertuo', 'Cafetera automática Nespresso Vertuo, prepara café y espresso con solo pulsar un botón. Incluye 12 cápsulas de regalo.', 149.99, 'USD', 10, 1, '2025-11-17 12:10:00'),
+(12, 'TV-001', 'Smart TV Samsung 55\" 4K', 'Televisor inteligente Samsung 4K UHD de 55 pulgadas, HDR, WiFi, apps integradas y control por voz.', 699.99, 'USD', 6, 1, '2025-11-17 12:15:00');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `id` int NOT NULL,
+  `product_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `rating` int NOT NULL,
+  `comment` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `reviews`
+--
+
+INSERT INTO `reviews` (`id`, `product_id`, `user_id`, `rating`, `comment`, `created_at`) VALUES
+(1, 1, 1, 5, 'Excelente laptop, muy rápida y ligera.', '2025-11-17 10:00:00'),
+(2, 2, 2, 4, 'Buen mouse, aunque algo caro.', '2025-11-17 11:00:00');
 
 -- --------------------------------------------------------
 
@@ -100,8 +147,23 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `created_at`) VALUES
+(7, 'Pablo Garcia', 'pablo@hotmail.com', '$2y$10$63GfSHDvsj9UuQ6XjTYZF.xZrAwJJkpmc5T93HaM8/9kRS/3/1CKi', '2025-11-16 23:46:26');
+
+--
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `favorites`
+--
+ALTER TABLE `favorites`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indices de la tabla `orders`
@@ -127,6 +189,14 @@ ALTER TABLE `products`
   ADD UNIQUE KEY `sku` (`sku`);
 
 --
+-- Indices de la tabla `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
@@ -136,6 +206,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `favorites`
+--
+ALTER TABLE `favorites`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `orders`
@@ -153,13 +229,19 @@ ALTER TABLE `order_items`
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de la tabla `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Restricciones para tablas volcadas

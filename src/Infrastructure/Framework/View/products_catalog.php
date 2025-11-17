@@ -30,40 +30,48 @@
     $error = \Infrastructure\Framework\Helper\FlashMessage::getError();
     ?>
 
-    <div class="catalog">
-        <div class="header-shop">
-            <h1>Catálogo de Productos</h1>
-            <div>
-                <a class="btn" href="/?cart=view">🛒 Ver Carrito</a>
-                <a class="btn" href="/">Volver</a>
+    <div class="catalog-container">
+        <?php include __DIR__ . '/catalog_sidebar.php'; ?>
+        <div style="flex:1;">
+            <div class="header-shop">
+                <h1>Catálogo de Productos</h1>
+                <div>
+                    <a class="btn" href="/?cart=view">🛒 Ver Carrito</a>
+                    <a class="btn" href="/">Volver</a>
+                </div>
             </div>
-        </div>
 
-        <?php if (!empty($success)): ?>
-            <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
-        <?php endif; ?>
+            <?php if (!empty($success)): ?>
+                <div class="alert alert-success"><?= htmlspecialchars($success) ?></div>
+            <?php endif; ?>
 
-        <?php if (!empty($error)): ?>
-            <div class="alert alert-error"><?= htmlspecialchars($error) ?></div>
-        <?php endif; ?>
+            <?php if (!empty($error)): ?>
+                <div class="alert alert-error"><?= htmlspecialchars($error) ?></div>
+            <?php endif; ?>
 
-        <?php if (empty($products)): ?>
-            <p>No hay productos disponibles.</p>
-        <?php else: ?>
-            <div class="products">
-                <?php foreach ($products as $product): ?>
-                    <div class="product-card">
-                        <h3><?= htmlspecialchars($product->getName()) ?></h3>
-                        <p><?= htmlspecialchars(substr($product->getDescription(), 0, 100)) ?>...</p>
-                        <div class="product-price">$<?= number_format($product->getPrice(), 2) ?></div>
-                        <div class="product-stock">Stock: <?= $product->getStock() ?></div>
-                        <div style="margin-top: 10px;">
-                            <a class="btn" href="/?shop=product&id=<?= $product->getId() ?>">Ver Detalles</a>
+            <?php if (empty($products)): ?>
+                <p>No hay productos disponibles.</p>
+            <?php else: ?>
+                <div class="catalog-grid">
+                    <?php foreach ($products as $product): ?>
+                        <div class="product-card">
+                            <img class="product-card__img" src="/public/assets/img/product-<?= $product->getId() ?>.jpg" alt="<?= htmlspecialchars($product->getName()) ?>">
+                            <div class="product-card__title"><?= htmlspecialchars($product->getName()) ?></div>
+                            <div class="product-card__price">$<?= number_format($product->getPrice(), 2) ?></div>
+                            <div class="product-card__rating">★★★★★</div>
+                            <div style="margin-bottom:0.5rem;color:#666;font-size:0.95em;">Stock: <?= $product->getStock() ?></div>
+                            <a class="product-card__btn" href="/?shop=product&id=<?= $product->getId() ?>">Ver Detalles</a>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+                <!-- Paginación demo -->
+                <div style="margin:2rem 0;text-align:center;">
+                    <a href="#" style="margin:0 0.5rem;color:#232f3e;text-decoration:none;">&laquo; Anterior</a>
+                    <span style="font-weight:bold;color:#232f3e;">1</span>
+                    <a href="#" style="margin:0 0.5rem;color:#232f3e;text-decoration:none;">Siguiente &raquo;</a>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
 </body>
 </html>

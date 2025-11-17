@@ -20,38 +20,80 @@
 <body class="users">
     <?php include __DIR__ . '/header.php'; ?>
 
-    <div class="product-detail">
-        <a class="btn btn-secondary" href="/?shop=catalog">← Volver al Catálogo</a>
-
-        <h1><?= htmlspecialchars($product->getName()) ?></h1>
-        <p><strong>SKU:</strong> <?= htmlspecialchars($product->getSku()) ?></p>
-        
-        <div class="product-price">$<?= number_format($product->getPrice(), 2) ?> <?= htmlspecialchars($product->getCurrency()) ?></div>
-        
-        <div class="product-description">
-            <?= htmlspecialchars($product->getDescription()) ?>
+    <div class="product-detail-container">
+        <div class="product-detail-gallery">
+            <img src="/public/assets/img/product-<?= $product->getId() ?>.jpg" alt="<?= htmlspecialchars($product->getName()) ?>">
+            <!-- Miniaturas demo -->
+            <div style="display:flex;gap:0.5rem;">
+                <img src="/public/assets/img/product-<?= $product->getId() ?>.jpg" style="width:48px;height:48px;object-fit:contain;">
+                <img src="/public/assets/img/product-<?= $product->getId() ?>.jpg" style="width:48px;height:48px;object-fit:contain;">
+            </div>
         </div>
-
-        <div class="product-stock">
-            <strong>Stock disponible:</strong> <?= $product->getStock() ?> unidades
-        </div>
-
-        <?php if ($product->getStock() > 0): ?>
-            <form method="POST" action="/?cart=add" style="margin-top: 20px;">
-                <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
-                <label>
-                    Cantidad:
-                    <input type="number" name="quantity" value="1" min="1" max="<?= $product->getStock() ?>" class="quantity-input">
-                </label>
-                <button class="btn" type="submit">Añadir al Carrito</button>
-            </form>
-        <?php else: ?>
-            <p style="color: red; font-weight: bold; margin-top: 20px;">Producto sin stock</p>
-        <?php endif; ?>
-
-        <div style="margin-top: 30px;">
-            <a class="btn btn-secondary" href="/?cart=view">🛒 Ver Carrito</a>
+        <div class="product-detail-info">
+            <div class="product-detail-title"><?= htmlspecialchars($product->getName()) ?></div>
+            <div class="product-detail-price">$<?= number_format($product->getPrice(), 2) ?></div>
+            <div class="product-detail-rating">
+                <?php $avg = $averageRating ?? 5; for ($i=1; $i<=5; $i++): ?>
+                    <span><?= $i <= $avg ? '★' : '☆' ?></span>
+                <?php endfor; ?>
+                <span style="color:#888;font-size:0.95em;">(<?= number_format($avg,1) ?>)</span>
+            </div>
+            <div class="product-detail-desc"><?= nl2br(htmlspecialchars($product->getDescription())) ?></div>
+            <div class="product-detail-buy">
+                <form action="/?cart=add" method="POST" style="display:inline;">
+                    <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
+                    <button type="submit">Añadir al carrito</button>
+                </form>
+                <form action="/?favorite=add" method="POST" style="display:inline;">
+                    <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
+                    <button type="submit" class="favorite-btn">❤ Añadir a favoritos</button>
+                </form>
+            </div>
+            <div class="reviews-section">
+                <h3>Opiniones de clientes</h3>
+                <?php if (empty($reviews)): ?>
+                    <p>No hay opiniones aún.</p>
+                <?php else: ?>
+                    <?php foreach ($reviews as $review): ?>
+                        <div class="review-card">
+                            <div class="review-rating">
+                                <?php for ($i=1; $i<=5; $i++): ?>
+                                    <span><?= $i <= $review->getRating() ? '★' : '☆' ?></span>
+                                <?php endfor; ?>
+                            </div>
+                            <span class="review-user">Usuario #<?= $review->getUserId() ?></span>
+                            <span class="review-date"> - <?= $review->getCreatedAt()->format('d/m/Y') ?></span>
+                            <div class="review-comment"><?= nl2br(htmlspecialchars($review->getComment())) ?></div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                <?php if (!empty($_SESSION['user_id'])): ?>
+                    <form class="review-form" action="/?review=add" method="POST">
+                        <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
+                        <label for="rating">Tu valoración:</label>
+                        <select name="rating" id="rating" required>
+                            <option value="5">★★★★★</option>
+                            <option value="4">★★★★</option>
+                            <option value="3">★★★</option>
+                            <option value="2">★★</option>
+                            <option value="1">★</option>
+                        </select>
+                        <label for="comment">Comentario:</label>
+                        <textarea name="comment" id="comment" rows="3" required></textarea>
+                        <button type="submit">Enviar opinión</button>
+                    </form>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
+    <footer class="footer">
+        <div class="footer__links">
+            <a href="#">Condiciones</a>
+            <a href="#">Privacidad</a>
+            <a href="#">Ayuda</a>
+            <a href="#">Contacto</a>
+        </div>
+        <div class="footer__copy">&copy; 2025 Amazon Hexagon. Proyecto demo.</div>
+    </footer>
 </body>
 </html>

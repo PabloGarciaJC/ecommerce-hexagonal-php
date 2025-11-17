@@ -63,10 +63,8 @@ try {
         } else {
             $authController->showLoginForm();
         }
-
     } elseif (isset($_GET['logout'])) {
         $authController->logout();
-
     } elseif (isset($_GET['register'])) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userController->store($_POST);
@@ -76,7 +74,6 @@ try {
         }
     } elseif (isset($_GET['list'])) {
         $userController->index();
-
     } elseif (isset($_GET['user'])) {
         // user actions: edit (GET), update (POST to ?user=update), delete (POST to ?user=delete)
         $action = $_GET['user'] ?? '';
@@ -89,50 +86,54 @@ try {
         } else {
             header('Location: /?list=listar');
         }
-
     } else {
-        // raíz -> catálogo de productos por defecto
-        if (isset($_GET['shop'])) {
-            $action = $_GET['shop'] ?? '';
-            if ($action === 'catalog') {
-                $productController->index();
-            } elseif ($action === 'product') {
-                $productController->show();
-            } elseif ($action === 'create' && $_SERVER['REQUEST_METHOD'] === 'GET') {
-                $productController->create();
-            } elseif ($action === 'store' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-                $productController->store();
-            } else {
-                $productController->index();
-            }
-        } elseif (isset($_GET['cart'])) {
-            $action = $_GET['cart'] ?? '';
-            if ($action === 'view') {
-                $cartController->view();
-            } elseif ($action === 'add' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-                $cartController->add();
-            } elseif ($action === 'remove' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-                $cartController->remove();
-            } elseif ($action === 'clear') {
-                $cartController->clear();
-            } else {
-                $cartController->view();
-            }
-        } elseif (isset($_GET['order'])) {
-            $action = $_GET['order'] ?? '';
-            if ($action === 'checkout' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-                $orderController->checkout();
-            } elseif ($action === 'success') {
-                $orderController->viewOrder();
-            } else {
-                $productController->index();
-            }
+        // Home Amazon-like
+        if (!isset($_GET['shop']) && !isset($_GET['cart']) && !isset($_GET['order']) && !isset($_GET['admin'])) {
+            $products = $productRepository->findAll();
+            include __DIR__ . '/src/Infrastructure/Framework/View/home.php';
+        } elseif (isset($_GET['admin'])) {
+            // Panel de administración demo
+            $products = $productRepository->findAll();
+            include __DIR__ . '/src/Infrastructure/Framework/View/admin_panel.php';
         } else {
-            // Default: show catalog
-            $productController->index();
+            if (isset($_GET['shop'])) {
+                $action = $_GET['shop'] ?? '';
+                if ($action === 'catalog') {
+                    $productController->index();
+                } elseif ($action === 'product') {
+                    $productController->show();
+                } elseif ($action === 'create' && $_SERVER['REQUEST_METHOD'] === 'GET') {
+                    $productController->create();
+                } elseif ($action === 'store' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $productController->store();
+                } else {
+                    $productController->index();
+                }
+            } elseif (isset($_GET['cart'])) {
+                $action = $_GET['cart'] ?? '';
+                if ($action === 'view') {
+                    $cartController->view();
+                } elseif ($action === 'add' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $cartController->add();
+                } elseif ($action === 'remove' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $cartController->remove();
+                } elseif ($action === 'clear') {
+                    $cartController->clear();
+                } else {
+                    $cartController->view();
+                }
+            } elseif (isset($_GET['order'])) {
+                $action = $_GET['order'] ?? '';
+                if ($action === 'checkout' && $_SERVER['REQUEST_METHOD'] === 'POST') {
+                    $orderController->checkout();
+                } elseif ($action === 'success') {
+                    $orderController->viewOrder();
+                } else {
+                    $productController->index();
+                }
+            }
         }
     }
-
 } catch (Throwable $e) {
     echo "<h3>Error:</h3>";
     echo "<pre>" . $e->getMessage() . "</pre>";
