@@ -30,17 +30,10 @@
             <div class="product-detail-desc"><?= nl2br(htmlspecialchars($product->getDescription())) ?></div>
 
             <div class="product-detail-buy">
-
                 <form action="/?cart=add" method="POST">
                     <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
                     <button type="submit" class="btn-primary">Añadir al carrito</button>
                 </form>
-
-                <form action="/?favorite=add" method="POST">
-                    <input type="hidden" name="product_id" value="<?= $product->getId() ?>">
-                    <button type="submit" class="btn-favorite">❤ Añadir a favoritos</button>
-                </form>
-
             </div>
 
             <div class="reviews-section">

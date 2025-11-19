@@ -4,9 +4,6 @@
             <h1 class="home-title">Bienvenido a Ecommerce Hexagon</h1>
             <p class="home-subtitle">Tu tienda online con miles de productos, envío rápido y la mejor experiencia.</p>
         </div>
-        <img class="home-hero__img"
-            src="/public/assets/img/ecommerce-hero.png"
-            alt="Ecommerce Hexagon">
     </section>
     <section class="home-section">
         <h2 class="section-title">Categorías populares</h2>

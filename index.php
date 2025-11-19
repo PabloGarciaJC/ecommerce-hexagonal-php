@@ -52,10 +52,10 @@ $orderController   = new OrderController($createOrder);
 // Detectar página
 $page = key($_GET) ?? 'home';
 
-// 🚨 EMPEZAR BUFFER (todo lo que imprima el controlador se guarda)
+// EMPEZAR BUFFER (todo lo que imprima el controlador se guarda)
 ob_start();
 
-// ---------------- ESTE ES TU ROUTER --------------------------
+// ---------------- ROUTER --------------------------
 
 switch ($page) {
 
@@ -72,9 +72,7 @@ switch ($page) {
         break;
 
     case 'register':
-        ($_SERVER['REQUEST_METHOD'] === 'POST')
-            ? $userController->store($_POST)
-            : $userController->form();
+        ($_SERVER['REQUEST_METHOD'] === 'POST') ? $userController->store($_POST) : $userController->form();
         break;
 
     case 'list':
@@ -122,11 +120,6 @@ switch ($page) {
         }
         break;
 
-    case 'admin':
-        $products = $productRepository->findAll();
-        include __DIR__ . '/src/Infrastructure/Framework/View/admin_panel.php';
-        break;
-
     default:
         $products = $productRepository->findAll();
         include __DIR__ . '/src/Infrastructure/Framework/View/home.php';
@@ -134,7 +127,7 @@ switch ($page) {
 
 // ---------------- FIN ROUTER --------------------------
 
-$content = ob_get_clean(); // ← capturamos el contenido del router
+$content = ob_get_clean(); // capturamos el contenido del router
 ?>
 <!doctype html>
 <html>
@@ -145,7 +138,7 @@ $content = ob_get_clean(); // ← capturamos el contenido del router
 
 <?php include __DIR__ . '/src/Infrastructure/Framework/View/header.php'; ?>
 
-<?= $content ?> <!-- aquí se inserta lo que imprimió el router -->
+<?= $content ?> <!-- Se inserta lo que imprimio el router -->
 
 <?php include __DIR__ . '/src/Infrastructure/Framework/View/footer.php'; ?>
 

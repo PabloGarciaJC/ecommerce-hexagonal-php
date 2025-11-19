@@ -1,10 +1,8 @@
 <div class="checkout-container">
     <h1>Resumen del Pedido</h1>
-
     <?php if (!empty($error)): ?>
         <div class="alert alert-error"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
-
     <div class="checkout-section checkout-summary">
         <h2>Artículos del Pedido</h2>
         <?php if (!empty($cart)): ?>

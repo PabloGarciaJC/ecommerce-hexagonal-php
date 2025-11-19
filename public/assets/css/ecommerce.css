@@ -470,13 +470,13 @@ body {
 }
 
 .review-form button {
-  background: var(--color-accent);
+  background: #3498db;
   border: none;
   padding: 0.5rem 1.2rem;
   border-radius: var(--radius-md);
   font-size: 1rem;
   cursor: pointer;
-  color: var(--color-primary);
+  color: var( --bg-white);
   font-weight: 600;
 }
 
@@ -537,6 +537,12 @@ body {
 
 .filter-form .filter-group {
   margin-bottom: 1.5rem;
+}
+
+.catalog-sidebar .btn {
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
 }
 
 .filter-form label {
@@ -1105,19 +1111,6 @@ body {
   margin-top: 10px;
 }
 
-.btn {
-  padding: 10px 15px;
-  background-color: #27ae60;
-  color: white;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 1em;
-}
-
-.btn:hover {
-  background-color: #229954;
-}
 
 .btn-secondary {
   background-color: #3498db;
@@ -1138,6 +1131,54 @@ body {
   border: 1px solid #f5c6cb;
   color: #721c24;
 }
+
+/* =========================================
+   SUCCES
+========================================= */
+.success-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  text-align: center;
+  border: 2px solid #27ae60;
+  border-radius: 5px;
+  background-color: #f0fff4;
+}
+
+.success-container h1 {
+  color: #27ae60;
+}
+
+.btn {
+  padding: 10px 15px;
+  background-color: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 3px;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+  margin: 10px 5px;
+}
+
+.btn:hover {
+  background-color: #2980b9;
+}
+
+.btn-success {
+  padding: 10px 15px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.btn-success:hover {
+  background-color: #229954;
+}
+
 
 /* =========================================
    FOOTER
@@ -1167,189 +1208,3 @@ body {
   font-size: 0.9rem;
   color: #bbb;
 }
-
-
-
-
-
-
-
-/*ssss */
-/* BEM-based styles for users views */
-:root{
-    --bg: #f7f9fb;
-    --card: #ffffff;
-    --accent: #2b6cb0;
-    --muted: #6b7280;
-    --success: #16a34a;
-    --border: #e6edf3;
-}
-
-body.users{
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    background: var(--bg);
-    color: #111827;
-}
-
-.users__main{
-    max-width: 900px;
-    margin: 36px auto;
-    background: var(--card);
-    padding: 24px;
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    box-shadow: 0 2px 8px rgba(16,24,40,0.04);
-}
-
-.users__header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom: 12px;
-}
-
-.users__title{
-    font-size: 1.5rem;
-    margin:0;
-}
-
-.users__link{
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.95rem;
-}
-
-.users__container{
-    overflow-x:auto;
-}
-
-.users__table{
-    width:100%;
-    border-collapse: collapse;
-}
-
-.users__th,
-.users__cell{
-    padding: 10px 12px;
-    text-align: left;
-    border-bottom: 1px solid var(--border);
-}
-
-.users__thead{
-    background: #f1f5f9;
-}
-
-.users__row:nth-child(even){
-    background: rgba(15,23,42,0.02);
-}
-
-.users__form{
-    display:flex;
-    flex-direction:column;
-    gap: 12px;
-}
-
-.users__field{
-    display:flex;
-    flex-direction:column;
-}
-
-.users__label{
-    font-size:0.95rem;
-    color: var(--muted);
-}
-
-.users__input{
-    padding: 8px 10px;
-    margin-top:6px;
-    border:1px solid var(--border);
-    border-radius:6px;
-    background: #fff;
-}
-
-.users__button{
-    padding: 10px 14px;
-    border-radius:6px;
-    border: none;
-    cursor:pointer;
-}
-
-.users__button--primary{
-    background: var(--accent);
-    color: #fff;
-}
-
-.users__message{
-    padding: 12px 14px;
-    border-radius:6px;
-    margin-bottom: 12px;
-}
-
-.users__message--success{
-    background: rgba(16,185,129,0.08);
-    border: 1px solid rgba(16,185,129,0.2);
-    color: var(--success);
-}
-
-.users__message--error{
-    background: rgba(220,38,38,0.06);
-    border: 1px solid rgba(220,38,38,0.12);
-    color: #c0262e;
-}
-
-.users__help{ margin-top: 12px; }
-
-/* Header styles for the app */
-.app-header{
-    background: #0f172a;
-    color: #fff;
-    padding: 8px 0;
-}
-.app-header__inner{
-    max-width: 1100px;
-    margin: 0 auto;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding: 0 16px;
-}
-.app-header__logo{
-    color:#fff;
-    text-decoration:none;
-    font-weight:600;
-}
-.app-header__nav{
-    display:flex;
-    gap:12px;
-    align-items:center;
-}
-.app-header__link{
-    color: #93c5fd;
-    text-decoration:none;
-}
-.app-header__user{
-    color: #fff;
-    margin-right:8px;
-}
-
-
-
-/*dd*/
-       .success-container { max-width: 600px; margin: 40px auto; padding: 30px; text-align: center; border: 2px solid #27ae60; border-radius: 5px; background-color: #f0fff4; }
-        .success-container h1 { color: #27ae60; }
-        .btn { padding: 10px 15px; background-color: #3498db; color: white; text-decoration: none; border-radius: 3px; display: inline-block; border: none; cursor: pointer; margin: 10px 5px; }
-        .btn:hover { background-color: #2980b9; }
-
-
-/*Admin*/
-
-               .admin-container { max-width: 1100px; margin: 2rem auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 2rem; }
-        .admin-title { color: #232f3e; font-size: 2rem; margin-bottom: 1.5rem; }
-        .admin-table { width: 100%; border-collapse: collapse; margin-bottom: 2rem; }
-        .admin-table th, .admin-table td { border: 1px solid #eee; padding: 0.7rem; text-align: left; }
-        .admin-table th { background: #f5f6fa; color: #232f3e; }
-        .admin-actions a { margin-right: 0.7rem; color: #232f3e; text-decoration: none; font-weight: bold; }
-        .admin-actions a:hover { color: #b12704; }
-        .admin-form { margin-top: 2rem; }
-        .admin-form input, .admin-form select { padding: 0.5rem; margin-bottom: 1rem; width: 100%; border-radius: 4px; border: 1px solid #ddd; }
-        .admin-form button { background: #febd69; color: #232f3e; border: none; border-radius: 4px; padding: 0.7rem 1.5rem; font-size: 1rem; cursor: pointer; font-weight: bold; }

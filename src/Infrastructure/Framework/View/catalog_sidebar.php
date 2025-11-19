@@ -30,6 +30,6 @@
                 <option value="name_desc">Nombre Z-A</option>
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">Filtrar</button>
+        <button type="submit" class="btn">Filtrar</button>
     </form>
 </aside>
