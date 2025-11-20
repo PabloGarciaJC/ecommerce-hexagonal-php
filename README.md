@@ -1,8 +1,51 @@
-# hexagonal
+# Ecommerce (Hexagonal + PHP + JS)
 
-Proyecto de Practica
+**Ecommerce Hexagonal** es un sistema de gestión de contenidos especializado en comercio electrónico, desarrollado con **PHP** siguiendo la **Arquitectura Hexagonal** y potenciado con **JavaScript** para la interactividad del lado del cliente. Este proyecto tiene un propósito educativo: sirve como entorno de aprendizaje para mejorar mis habilidades en **arquitectura hexagonal** y desarrollo con **PHP**, y se va ampliando progresivamente a medida que profundizo en estos conceptos.
+
+## Demo del Proyecto
+
+[https://ecommerce-hexagonal.com/](https://ecommerce-hexagonal.pablogarciajc.com/)
+
+| ![Imagen 1](https://pablogarciajc.com/wp-content/uploads/2025/11/ecommerce-hexagonal-11.webp) | ![Imagen 2](https://pablogarciajc.com/wp-content/uploads/2025/11/ecommerce-hexagonal-22.webp) |
+|-----------|-----------|
+
+## Funcionalidades Principales
+
+La plataforma cuenta con **cuatro módulos principales** que optimizan la experiencia de usuario y administración:
+
+- **Diseño Adaptado a Móviles**: Interfaz responsiva y accesible desde cualquier dispositivo.
+- **Registro y Login**: Gestión segura de cuentas de usuario y autenticación.
+- **Cuenta**: Administración de perfil, información personal y contraseñas.
+- **Usuarios**: Creación, edición y eliminación de usuarios dentro del sistema.
+- **Catálogo y Filtros**: Visualización, búsqueda y filtrado de productos para una navegación ágil.
+- **Carrito de Compras**: Gestión de productos seleccionados para la compra.
+- **Ficha de Producto**: Visualización detallada de productos y posibilidad de marcarlos como favoritos.
+- **Cerrar Sesión**: Cierre de sesión seguro para proteger la cuenta del usuario.
+
+### Roles de Usuario Iniciales
+
+El sistema está diseñado inicialmente con **dos roles**:
+
+1. **Cliente**: Accede principalmente a funcionalidades relacionadas con la compra de productos, visualización de su cuenta, carrito de compras, y favoritos.
+
+## Tecnologías Usadas
+
+| **Tecnología**             | **Descripción**                                                                                                           |
+|----------------------------|---------------------------------------------------------------------------------------------------------------------------|
+| **PHP y SQL**              | Lenguaje de programación para backend y bases de datos.                                                                  |
+| **JavaScript**             | Lenguaje para interactividad en el frontend y ejecución de AJAX para actualizar contenido sin recargar la página.       |
+| **Composer**               | Gestor de dependencias en PHP.                                                                                            |
+| **Docker (con WSL)**       | Plataforma para contenerización y escalabilidad, con soporte para entornos Linux en Windows mediante WSL2.               |
+| **Docker Compose**         | Herramienta para definir y ejecutar aplicaciones multi-contenedor, facilitando la gestión de entornos complejos.         |
+| **Make**                   | Automatiza tareas repetitivas como pruebas, despliegues y gestión de contenedores, optimizando el flujo de trabajo.      |
 
 ---
+
+## Usuarios Ficticios para Pruebas
+
+| **Nombre**      | **Correo**                  | **Contraseña** | **Rol**   |
+|-----------------|----------------------------|----------------|-----------|
+| Pablo Garcia    | [demo@pablogarciajc.com](mailto:demo@pablogarciajc.com) | password       | Cliente   |
 
 ## Instalación
 
@@ -36,12 +79,12 @@ Proyecto de Practica
 
 | Red Social   | Descripción                                              | Enlace                   |
 |--------------|----------------------------------------------------------|--------------------------|
-| **Facebook** | Conéctate y mantente al tanto de mis actualizaciones.    | [Presiona aquí](https://facebook.com/tu-usuario) |
-| **YouTube**  | Fundamentos de la programación, tutoriales y noticias.   | [Presiona aquí](https://youtube.com/tu-canal)     |
-| **Página Web** | Más información sobre mis proyectos y servicios.        | [Presiona aquí](https://tusitio.com)              |
-| **LinkedIn** | Sigue mi carrera profesional y establece conexiones.     | [Presiona aquí](https://linkedin.com/in/tu-usuario) |
-| **Instagram**| Fotos, proyectos y contenido relacionado.                 | [Presiona aquí](https://instagram.com/tu-usuario) |
-| **Twitter**  | Proyectos, pensamientos y actualizaciones.                | [Presiona aquí](https://twitter.com/tu-usuario)   |
+| **Facebook** | Conéctate y mantente al tanto de mis actualizaciones.    | [Presiona aquí](https://www.facebook.com/PabloGarciaJC) |
+| **YouTube**  | Fundamentos de la programación, tutoriales y noticias.   | [Presiona aquí](https://www.youtube.com/@pablogarciajc)     |
+| **Página Web** | Más información sobre mis proyectos y servicios.        | [Presiona aquí](https://pablogarciajc.com/)              |
+| **LinkedIn** | Sigue mi carrera profesional y establece conexiones.     | [Presiona aquí](https://www.linkedin.com/in/pablogarciajc) |
+| **Instagram**| Fotos, proyectos y contenido relacionado.                 | [Presiona aquí](https://www.instagram.com/pablogarciajc) |
+| **Twitter**  | Proyectos, pensamientos y actualizaciones.                | [Presiona aquí](https://x.com/PabloGarciaJC?t=lct1gxvE8DkqAr8dgxrHIw&s=09)   |
 
 ---
 > _"El buen manejo de tus finanzas hoy construye la seguridad del mañana."_
