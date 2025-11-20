@@ -17,13 +17,13 @@ $error = \Infrastructure\Framework\Helper\FlashMessage::getError();
 
     <form class="login-form" action="/?login=do" method="POST">
         <div class="login-field">
-            <label class="login-label">Email
+            <label class="login-label">Email:
                 <input class="login-input" type="email" name="email" required>
             </label>
         </div>
 
         <div class="login-field">
-            <label class="login-label">Contraseña
+            <label class="login-label">Contraseña:
                 <input class="login-input" type="password" name="password" required>
             </label>
         </div>

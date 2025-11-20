@@ -15,19 +15,19 @@ $error = \Infrastructure\Framework\Helper\FlashMessage::getError();
 
     <form class="register-form" action="/?register=do" method="POST">
         <div class="register-field">
-            <label class="register-label">Nombre
+            <label class="register-label">Nombre:
                 <input class="register-input" type="text" name="name" required>
             </label>
         </div>
 
         <div class="register-field">
-            <label class="register-label">Email
+            <label class="register-label">Email:
                 <input class="register-input" type="email" name="email" required>
             </label>
         </div>
 
         <div class="register-field">
-            <label class="register-label">Contraseña (mínimo 6 caracteres)
+            <label class="register-label">Contraseña (mínimo 6 caracteres):
                 <input class="register-input" type="password" name="password" minlength="6" required>
             </label>
         </div>

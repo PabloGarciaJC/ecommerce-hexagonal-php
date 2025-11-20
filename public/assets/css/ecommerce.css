@@ -316,6 +316,7 @@ body {
 }
 
 .product-card__btn {
+  text-decoration: none;
   background: var(--color-accent);
   color: var(--color-primary);
   border: none;
@@ -765,6 +766,9 @@ body {
 }
 
 .register-label {
+  display: flex;
+  flex-direction: column; 
+  gap: 10px;
   font-weight: 500;
   margin-bottom: 0.3rem;
   color: var(--color-primary);
@@ -877,6 +881,9 @@ body {
 }
 
 .login-label {
+  display: flex;
+  flex-direction: column; 
+  gap: 10px;
   font-weight: 500;
   margin-bottom: 0.3rem;
   color: var(--color-primary);

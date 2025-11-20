@@ -10,7 +10,7 @@ $error = \Infrastructure\Framework\Helper\FlashMessage::getError();
         <div class="header-shop">
             <h1>Catálogo de Productos</h1>
             <div>
-                <a class="btn" href="/?cart=view">🛒 Ver Carrito</a>
+                <a class="btn" href="/?cart=view">Ver Carrito</a>
                 <a class="btn" href="/">Volver</a>
             </div>
         </div>
