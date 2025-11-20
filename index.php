@@ -1,4 +1,8 @@
 <?php
+if (!file_exists(__DIR__ . '/vendor/autoload.php')) {
+    die("vendor/autoload.php NO existe");
+}
+
 require __DIR__ . '/vendor/autoload.php';
 
 use Infrastructure\Persistence\Database;
@@ -18,11 +22,6 @@ use Infrastructure\Framework\Http\AuthController;
 use Infrastructure\Framework\Http\ProductController;
 use Infrastructure\Framework\Http\CartController;
 use Infrastructure\Framework\Http\OrderController;
-
-// Iniciar sesión
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 
 // Conexión y repositorios
 $pdo = Database::connect();
@@ -54,6 +53,8 @@ $page = key($_GET) ?? 'home';
 
 // EMPEZAR BUFFER (todo lo que imprima el controlador se guarda)
 ob_start();
+// Iniciar sesión
+ session_start();
 
 // ---------------- ROUTER --------------------------
 
